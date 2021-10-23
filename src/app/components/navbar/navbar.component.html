@@ -1,0 +1,10 @@
+<nav>
+    <div class="nav-wrapper black">
+            <a href="" class="brand-logo center">Department & Employee Manager</a>
+            <br>
+        <div class="menu-items">
+            <a href="#" routerLink="/"><div class="items" [ngClass]="[color1 == 'grey' ? 'dark-grey' : 'black']" (click)="toggle1()">Departments</div></a>
+            <a href="#" routerLink="/employees"><div class="items" [ngClass]="[color2 == 'grey' ? 'dark-grey' : 'black']" (click)="toggle2()">Employees</div></a>
+        </div>
+    </div>
+</nav>

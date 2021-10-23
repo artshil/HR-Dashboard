@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">Add Department</span>
+        <form (ngSubmit)="onSubmit()" class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" placeholder="Department ID" [(ngModel)]="department.d_id" name="d-id">
+                    <label for="ID"></label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="text" placeholder="Department Name" [(ngModel)]="department.d_name" name="d-name">
+                    <label for="Name"></label>
+                </div>
+                <input type="submit" value="Submit" class="btn">
+            </div>
+        </form>
+    </div>
+</div>

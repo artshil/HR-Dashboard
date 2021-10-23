@@ -1,0 +1,46 @@
+<app-add-employee></app-add-employee>
+
+<div class="collection">
+    <div class="collection-item right">
+        Filter by department &#160;
+        <mat-form-field class="input-field col s4">
+            <mat-select [(value)]="filter" (selectionChange)="onFilter($event, filter)">
+            <mat-option value="All">All</mat-option>
+              <mat-option *ngFor="let department of departmentList" [value]="department.d_name">
+                {{department.d_name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<div>
+    <ul *ngFor="let employee of employees" class="collection">
+        <li class="collection-item">Emp ID: <strong>{{employee.e_id}}</strong>&#160;&#160;|&#160;&#160; Emp Name: <strong>{{employee.e_name}}</strong>&#160;&#160;|&#160;&#160; Department: <strong>{{employee.e_dept}}</strong>
+            <a class="secondary-content">
+                <i (click)="editEmp($event, employee)" class="fa fa-pencil"></i>&#160;
+                <i  *ngIf="editState && empToEdit.id == employee.id" (click)="clearState()" class="fa fa-compress"></i>
+            </a>
+            <div *ngIf="editState && empToEdit.id == employee.id">
+                <form (ngSubmit)="updateEmp(employee)">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input type="text" placeholder="Add ID" [(ngModel)]="employee.e_id" name="e-id">
+                        </div>
+                        <div class="input-field col s4">
+                            <input type="text" placeholder="Add Name" [(ngModel)]="employee.e_name" name="e-name">
+                        </div>
+                        <mat-form-field appearance="fill" class="input-field col s4">
+                            <mat-select [(ngModel)]="employee.e_dept" name="department">
+                              <mat-option *ngFor="let department of departmentList" [value]="department.d_name">
+                                {{department.d_name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        <input type="submit" value="Update" class="btn orange">&#160;
+                        <button (click)="deleteEmp($event, employee)" class="btn red">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </li>
+    </ul>
+</div>

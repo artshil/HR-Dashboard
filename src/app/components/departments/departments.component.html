@@ -1,0 +1,30 @@
+<app-add-department></app-add-department>
+<div>
+    <ul *ngFor="let department of departments" class="collection">
+        <li class="collection-item">ID: {{department.d_id}}&#160;&#160;|&#160;&#160;  Name: <strong>{{department.d_name}}</strong>
+            <a href="#" class="secondary-content">
+                <i (click)="editDept($event, department)" class="fa fa-pencil"></i>&#160;
+                <i  *ngIf="editState && deptToEdit.id == department.id" (click)="clearState()" class="fa fa-compress"></i>
+            </a>
+            <div *ngIf="editState && deptToEdit.id == department.id">
+                <form (ngSubmit)="updateDept(department)">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Add ID" [(ngModel)]="department.d_id" name="d-id">
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Add Name" [(ngModel)]="department.d_name" name="d-name">
+                        </div>
+                        <input type="submit" value="Update" class="btn orange">&#160;
+                        <button (click)="deleteDept($event, department)" class="btn red">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<ng-template #noDepartments>
+    <hr>
+    <h5>There are no departments!</h5>
+</ng-template>
